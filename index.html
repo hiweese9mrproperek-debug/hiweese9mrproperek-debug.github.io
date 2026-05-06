@@ -3,31 +3,106 @@
 <head>
   <meta charset="utf-8">
   <title>My Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #111;
+      color: #fff;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px;
+      border-bottom:1px solid #333;
+    }
+
+    nav a {
+      margin:0 10px;
+      color:#fff;
+      text-decoration:none;
+    }
+
+    h2 {
+      padding:20px;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      gap:20px;
+      padding:20px;
+    }
+
+    .card {
+      background:#222;
+      border-radius:12px;
+      overflow:hidden;
+      transition:0.3s;
+    }
+
+    .card:hover {
+      transform:translateY(-5px) scale(1.03);
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    img {
+      width:100%;
+    }
+
+    .content {
+      padding:10px;
+    }
+  </style>
 </head>
+
 <body>
-<header style="display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid #333;">
+
+<header>
   <div style="font-size:20px;">我的作品集</div>
   <nav>
-    <a href="#" style="margin:0 10px;color:#fff;">摄影</a>
-    <a href="#" style="margin:0 10px;color:#fff;">视频</a>
-    <a href="#" style="margin:0 10px;color:#fff;">文章</a>
+    <a href="#">摄影</a>
+    <a href="#">视频</a>
+    <a href="#">文章</a>
   </nav>
 </header>
-</body>
-  <h2 style="padding:20px;">视频作品</h2>
 
+<!-- 摄影 -->
+<h2>摄影作品</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://picsum.photos/400/300?1">
+    <div class="content">摄影作品1</div>
+  </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/400/300?2">
+    <div class="content">摄影作品2</div>
+  </div>
+</div>
+
+<!-- 视频 -->
+<h2>视频作品</h2>
 <div style="padding:20px;">
   <iframe width="100%" height="400"
   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
   frameborder="0" allowfullscreen></iframe>
 </div>
-  <h2 style="padding:20px;">文章作品</h2>
 
+<!-- 文章 -->
+<h2>文章作品</h2>
 <div style="padding:20px;">
   <div class="card">
     <img src="https://picsum.photos/400/200">
-    <p>公众号文章标题</p>
-    <a href="#" style="color:#4da3ff;">点击阅读</a>
+    <div class="content">
+      公众号文章标题 <br>
+      <a href="#" style="color:#4da3ff;">点击阅读</a>
+    </div>
   </div>
 </div>
+
+</body>
 </html>
