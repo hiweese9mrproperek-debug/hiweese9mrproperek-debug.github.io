@@ -13,112 +13,109 @@
 }
 
 body{
-    background:#0d0d0d;
+    background:#0b0b0b;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;
 }
 
-/* 顶部导航 */
+/* 顶部 */
 header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:20px 60px;
-    border-bottom:1px solid #222;
+    border-bottom:1px solid #1f1f1f;
     position:sticky;
     top:0;
-    background:#0d0d0d;
-    z-index:999;
+    background:#0b0b0b;
 }
 
 .logo{
-    font-size:22px;
-    font-weight:700;
-    letter-spacing:1px;
+    font-size:20px;
+    font-weight:600;
 }
 
+/* 导航 */
 nav a{
     margin-left:28px;
     color:#888;
     text-decoration:none;
     cursor:pointer;
     transition:.3s;
-    font-size:15px;
 }
 
-nav a:hover,
-nav a.active{
+nav a.active,
+nav a:hover{
     color:#fff;
 }
 
-/* Hero */
+/* 标题 */
 .hero{
-    padding:90px 60px 50px;
+    padding:80px 60px 40px;
 }
 
 .hero h1{
-    font-size:54px;
-    margin-bottom:12px;
+    font-size:48px;
+    margin-bottom:10px;
 }
 
 .hero p{
     color:#777;
-    font-size:18px;
 }
 
 /* 瀑布流 */
 .grid{
-    column-count:3;
-    column-gap:22px;
+    column-count:4;
+    column-gap:20px;
     padding:0 60px 60px;
 }
 
-@media(max-width:1000px){
-    .grid{
-        column-count:2;
-    }
+@media(max-width:1200px){
+    .grid{column-count:3;}
 }
-
-@media(max-width:700px){
-    header{
-        padding:20px 24px;
-        flex-direction:column;
-        gap:16px;
-    }
-
-    .hero{
-        padding:60px 24px 40px;
-    }
-
-    .grid{
-        column-count:1;
-        padding:0 24px 40px;
-    }
+@media(max-width:800px){
+    .grid{column-count:2;}
+}
+@media(max-width:500px){
+    .grid{column-count:1;}
 }
 
 /* 卡片 */
 .card{
+    position:relative;
     break-inside:avoid;
-    margin-bottom:22px;
-    background:#171717;
-    border-radius:14px;
+    margin-bottom:20px;
+    border-radius:12px;
     overflow:hidden;
-    transition:.35s;
     cursor:pointer;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 10px 30px rgba(255,255,255,.06);
-}
-
+/* 图片 */
 .card img{
     width:100%;
     display:block;
+    transition:.4s;
 }
 
-.info{
-    padding:14px;
+/* 遮罩 */
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+    opacity:0;
+    transition:.3s;
+}
+
+/* hover效果 */
+.card:hover img{
+    transform:scale(1.05);
+}
+
+.card:hover .overlay{
+    opacity:1;
 }
 
 .title{
@@ -127,17 +124,16 @@ nav a.active{
 }
 
 .type{
-    font-size:13px;
-    color:#888;
+    font-size:12px;
+    color:#aaa;
     margin-top:6px;
 }
 
 /* 视频 */
 .video iframe{
     width:100%;
-    height:260px;
+    height:220px;
     border:none;
-    display:block;
 }
 </style>
 </head>
@@ -148,12 +144,12 @@ nav a.active{
     <div class="logo">林歌作品网</div>
 
     <nav>
-        <a class="active" onclick="filterProjects('all', event)">全部</a>
-        <a onclick="filterProjects('design', event)">平面设计</a>
-        <a onclick="filterProjects('ecommerce', event)">电商设计</a>
-        <a onclick="filterProjects('video', event)">视频</a>
-        <a onclick="filterProjects('wechat', event)">公众号文章</a>
-        <a onclick="filterProjects('news', event)">新闻稿</a>
+        <a class="active" onclick="filterProjects('all',event)">全部</a>
+        <a onclick="filterProjects('design',event)">平面设计</a>
+        <a onclick="filterProjects('ecommerce',event)">电商设计</a>
+        <a onclick="filterProjects('video',event)">视频</a>
+        <a onclick="filterProjects('wechat',event)">公众号文章</a>
+        <a onclick="filterProjects('news',event)">新闻稿</a>
     </nav>
 </header>
 
@@ -164,65 +160,44 @@ nav a.active{
 
 <section class="grid">
 
-    <!-- 平面设计 -->
     <div class="card design">
-        <img src="https://picsum.photos/600/820?random=1">
-        <div class="info">
+        <img src="https://picsum.photos/600/800?1">
+        <div class="overlay">
             <div class="title">品牌海报设计</div>
             <div class="type">平面设计</div>
         </div>
     </div>
 
-    <div class="card design">
-        <img src="https://picsum.photos/600/720?random=2">
-        <div class="info">
-            <div class="title">节日营销海报</div>
-            <div class="type">平面设计</div>
-        </div>
-    </div>
-
-    <!-- 电商 -->
     <div class="card ecommerce">
-        <img src="https://picsum.photos/600/650?random=3">
-        <div class="info">
-            <div class="title">淘宝详情页设计</div>
+        <img src="https://picsum.photos/600/700?2">
+        <div class="overlay">
+            <div class="title">电商详情页</div>
             <div class="type">电商设计</div>
         </div>
     </div>
 
-    <div class="card ecommerce">
-        <img src="https://picsum.photos/600/760?random=4">
-        <div class="info">
-            <div class="title">活动主视觉KV</div>
-            <div class="type">电商设计</div>
-        </div>
-    </div>
-
-    <!-- 视频 -->
     <div class="card video">
         <div class="video">
             <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
         </div>
-        <div class="info">
-            <div class="title">品牌宣传片</div>
+        <div class="overlay">
+            <div class="title">品牌视频</div>
             <div class="type">视频</div>
         </div>
     </div>
 
-    <!-- 公众号 -->
     <div class="card wechat">
-        <img src="https://picsum.photos/600/900?random=5">
-        <div class="info">
-            <div class="title">公众号推文排版</div>
+        <img src="https://picsum.photos/600/750?3">
+        <div class="overlay">
+            <div class="title">公众号封面设计</div>
             <div class="type">公众号文章</div>
         </div>
     </div>
 
-    <!-- 新闻稿 -->
     <div class="card news">
-        <img src="https://picsum.photos/600/700?random=6">
-        <div class="info">
-            <div class="title">企业新闻稿案例</div>
+        <img src="https://picsum.photos/600/650?4">
+        <div class="overlay">
+            <div class="title">品牌新闻稿</div>
             <div class="type">新闻稿</div>
         </div>
     </div>
@@ -230,18 +205,18 @@ nav a.active{
 </section>
 
 <script>
-function filterProjects(type, event){
-    const cards = document.querySelectorAll('.card');
-    const navs = document.querySelectorAll('nav a');
+function filterProjects(type,event){
+    const cards=document.querySelectorAll('.card');
+    const navs=document.querySelectorAll('nav a');
 
-    navs.forEach(item => item.classList.remove('active'));
+    navs.forEach(n=>n.classList.remove('active'));
     event.target.classList.add('active');
 
     cards.forEach(card=>{
-        if(type === 'all'){
-            card.style.display = 'block';
+        if(type==='all'){
+            card.style.display='block';
         }else{
-            card.style.display = card.classList.contains(type) ? 'block' : 'none';
+            card.style.display=card.classList.contains(type)?'block':'none';
         }
     });
 }
