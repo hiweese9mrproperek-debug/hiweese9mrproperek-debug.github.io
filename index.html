@@ -1,197 +1,309 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>林歌作品网</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial;
-  background:#0d0d0d;
-  color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+    background:#0d0d0d;
+    color:#fff;
 }
 
-/* 顶部导航 */
+/* ===== 导航 ===== */
 header{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 60px;
-  border-bottom:1px solid #222;
+    position:fixed;
+    width:100%;
+    top:0;
+    background:rgba(13,13,13,0.9);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:space-between;
+    padding:20px 60px;
+    z-index:999;
 }
-
+.logo{font-size:18px;font-weight:600}
 nav a{
-  margin-left:20px;
-  color:#aaa;
-  text-decoration:none;
-  cursor:pointer;
+    margin-left:30px;
+    color:#aaa;
+    text-decoration:none;
+}
+nav a:hover{color:#fff}
+
+/* ===== 首屏 ===== */
+.hero{
+    padding:160px 60px 80px;
+}
+.hero h1{
+    font-size:64px;
+}
+.hero p{color:#aaa;margin-top:10px}
+
+/* ===== 分类 ===== */
+.filter{
+    padding:20px 60px;
+}
+.filter span{
+    margin-right:20px;
+    cursor:pointer;
+    color:#888;
+}
+.filter span.active{
+    color:#fff;
+    border-bottom:2px solid #fff;
 }
 
-nav a:hover{
-  color:#fff;
-}
-
-/* Banner */
-.banner{
-  padding:80px 60px 40px;
-}
-
-.banner h1{
-  font-size:42px;
-  margin:0;
-}
-
-.banner p{
-  color:#888;
-}
-
-/* 瀑布流 */
+/* ===== 瀑布流 ===== */
 .grid{
-  column-count:3;
-  column-gap:20px;
-  padding:20px 60px 60px;
+    column-count:4;
+    column-gap:20px;
+    padding:20px 60px;
 }
-
 .card{
-  display:block;
-  break-inside:avoid;
-  margin-bottom:20px;
-  position:relative;
-  overflow:hidden;
-  border-radius:10px;
-  text-decoration:none;
-  color:#fff;
+    break-inside:avoid;
+    margin-bottom:20px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border-radius:12px;
+    transform:translateY(20px);
+    opacity:0;
+    transition:.6s;
 }
-
-/* 图片 */
+.card.show{
+    transform:translateY(0);
+    opacity:1;
+}
 .card img{
-  width:100%;
-  display:block;
-  border-radius:10px;
-  transition:0.4s;
+    width:100%;
+    border-radius:12px;
+    transition:.4s;
 }
-
-/* hover效果 */
 .card:hover img{
-  transform:scale(1.05);
-  opacity:0.7;
+    transform:scale(1.08);
+}
+.card:hover{
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+.card-title{
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    font-size:14px;
+    opacity:0;
+    transition:.3s;
+}
+.card:hover .card-title{
+    opacity:1;
 }
 
-/* 遮罩 */
-.overlay{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:20px;
-  opacity:0;
-  transition:0.3s;
+/* ===== 详情页 ===== */
+.detail{
+    display:none;
+    padding:120px 60px;
+    max-width:900px;
+    margin:auto;
+}
+.detail h1{
+    font-size:40px;
+    margin-bottom:10px;
+}
+.detail p{
+    color:#aaa;
+    margin-bottom:40px;
+}
+.detail img{
+    width:100%;
+    margin-bottom:20px;
+    border-radius:10px;
 }
 
-.card:hover .overlay{
-  opacity:1;
+/* CTA */
+.cta{
+    margin-top:40px;
+    padding:20px;
+    background:#111;
+    border-radius:10px;
+    text-align:center;
+}
+.cta a{
+    color:#fff;
+    border:1px solid #fff;
+    padding:10px 20px;
+    text-decoration:none;
 }
 
-.overlay h3{
-  margin:0;
-}
-
-.overlay p{
-  margin:5px 0 0;
-  font-size:12px;
-  color:#ccc;
+/* 返回 */
+.back{
+    margin-bottom:30px;
+    cursor:pointer;
+    color:#aaa;
 }
 
 /* 响应式 */
-@media(max-width:1000px){
-  .grid{column-count:2;}
+@media(max-width:1200px){
+    .grid{column-count:3}
 }
-
-@media(max-width:600px){
-  .grid{column-count:1;}
+@media(max-width:768px){
+    .grid{column-count:2}
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
-  <div>我的作品集</div>
-  <nav>
-    <a onclick="filter('all')">全部</a>
-    <a onclick="filter('平面')">平面设计</a>
-    <a onclick="filter('电商')">电商设计</a>
-    <a onclick="filter('视频')">视频</a>
-    <a onclick="filter('文章')">文章</a>
-  </nav>
+    <div class="logo">林歌作品网</div>
+    <nav>
+        <a href="/">首页</a>
+        <a href="#">作品</a>
+        <a href="#">服务</a>
+        <a href="#">关于</a>
+        <a href="#">联系</a>
+    </nav>
 </header>
 
-<div class="banner">
-  <h1>精选作品</h1>
-  <p>Branding · E-commerce · Content Design</p>
+<!-- 首页 -->
+<div id="home">
+<section class="hero">
+    <h1>设计作品集</h1>
+    <p>平面 · 电商 · 视频 · 内容创作</p>
+</section>
+
+<div class="filter">
+    <span class="active" onclick="filterWork('all',event)">全部</span>
+    <span onclick="filterWork('design',event)">平面设计</span>
+    <span onclick="filterWork('ecom',event)">电商设计</span>
+    <span onclick="filterWork('video',event)">视频</span>
+    <span onclick="filterWork('article',event)">文章</span>
 </div>
 
-<div class="grid">
+<div class="grid" id="grid"></div>
+</div>
 
-  <!-- 平面设计 -->
-  <a href="#" class="card" data-type="平面">
-    <img src="https://picsum.photos/400/500?1">
-    <div class="overlay">
-      <h3>品牌海报设计</h3>
-      <p>平面设计 · 2025</p>
+<!-- 详情页 -->
+<div class="detail" id="detail">
+    <div class="back" onclick="goHome()">← 返回</div>
+    <h1 id="dTitle"></h1>
+    <p id="dDesc"></p>
+    <div id="dImages"></div>
+
+    <div class="cta">
+        <p>需要类似项目？欢迎联系</p>
+        <a href="mailto:xxx@qq.com">立即合作</a>
     </div>
-  </a>
-
-  <a href="#" class="card" data-type="平面">
-    <img src="https://picsum.photos/400/300?2">
-    <div class="overlay">
-      <h3>LOGO设计</h3>
-      <p>品牌视觉</p>
-    </div>
-  </a>
-
-  <!-- 电商设计 -->
-  <a href="#" class="card" data-type="电商">
-    <img src="https://picsum.photos/400/600?3">
-    <div class="overlay">
-      <h3>电商详情页</h3>
-      <p>转化率提升</p>
-    </div>
-  </a>
-
-  <!-- 视频 -->
-  <a href="#" class="card" data-type="视频">
-    <img src="https://picsum.photos/400/350?4">
-    <div class="overlay">
-      <h3>短视频剪辑</h3>
-      <p>内容策划</p>
-    </div>
-  </a>
-
-  <!-- 文章 -->
-  <a href="#" class="card" data-type="文章">
-    <img src="https://picsum.photos/400/450?5">
-    <div class="overlay">
-      <h3>公众号文章</h3>
-      <p>阅读10W+</p>
-    </div>
-  </a>
-
 </div>
 
 <script>
-function filter(type){
-  let cards = document.querySelectorAll('.card');
 
-  cards.forEach(card=>{
-    if(type === 'all' || card.dataset.type === type){
-      card.style.display = 'block';
-    }else{
-      card.style.display = 'none';
-    }
-  });
+/* ===== JSON数据（可换成外部json文件） ===== */
+const works = [
+{
+    id:1,
+    title:"品牌海报设计",
+    desc:"为品牌打造视觉传播方案",
+    category:"design",
+    cover:"https://picsum.photos/500/700?1",
+    images:[
+        "https://picsum.photos/800/1000?1",
+        "https://picsum.photos/800/1000?2"
+    ]
+},
+{
+    id:2,
+    title:"电商详情页",
+    desc:"提升转化率的电商设计",
+    category:"ecom",
+    cover:"https://picsum.photos/500/600?2",
+    images:[
+        "https://picsum.photos/800/1000?2"
+    ]
+},
+{
+    id:3,
+    title:"短视频剪辑",
+    desc:"高转化短视频内容制作",
+    category:"video",
+    cover:"https://picsum.photos/500/650?3",
+    images:[
+        "https://picsum.photos/800/600?3"
+    ]
 }
+];
+
+/* ===== 渲染 ===== */
+function render(list){
+    const grid=document.getElementById("grid");
+    grid.innerHTML="";
+
+    list.forEach((w,i)=>{
+        const div=document.createElement("div");
+        div.className="card";
+        div.innerHTML=`
+            <img src="${w.cover}">
+            <div class="card-title">${w.title}</div>
+        `;
+
+        div.onclick=()=>{
+            history.pushState(null,"",`?id=${w.id}`);
+            openDetail(w.id);
+        }
+
+        grid.appendChild(div);
+
+        setTimeout(()=>div.classList.add("show"),i*100);
+    });
+}
+
+/* ===== 筛选 ===== */
+function filterWork(type,e){
+    document.querySelectorAll(".filter span").forEach(s=>s.classList.remove("active"));
+    e.target.classList.add("active");
+
+    if(type==="all") render(works);
+    else render(works.filter(w=>w.category===type));
+}
+
+/* ===== 打开详情 ===== */
+function openDetail(id){
+    const work=works.find(w=>w.id==id);
+
+    document.getElementById("home").style.display="none";
+    document.getElementById("detail").style.display="block";
+
+    document.getElementById("dTitle").innerText=work.title;
+    document.getElementById("dDesc").innerText=work.desc;
+
+    const box=document.getElementById("dImages");
+    box.innerHTML="";
+    work.images.forEach(img=>{
+        const el=document.createElement("img");
+        el.src=img;
+        box.appendChild(el);
+    });
+}
+
+/* 返回 */
+function goHome(){
+    history.pushState(null,"","/");
+    document.getElementById("detail").style.display="none";
+    document.getElementById("home").style.display="block";
+}
+
+/* ===== 首次加载判断URL ===== */
+window.onload=()=>{
+    const params=new URLSearchParams(location.search);
+    const id=params.get("id");
+
+    if(id){
+        openDetail(id);
+    }else{
+        render(works);
+    }
+};
+
 </script>
 
 </body>
