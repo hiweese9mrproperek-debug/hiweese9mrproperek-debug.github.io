@@ -2,138 +2,90 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>林歌作品网</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     background:#0b0b0b;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial;
+    font-family:Arial;
 }
 
 /* 顶部 */
 header{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     padding:20px 60px;
-    border-bottom:1px solid #1f1f1f;
-    position:sticky;
-    top:0;
-    background:#0b0b0b;
+    border-bottom:1px solid #222;
 }
 
 .logo{
-    font-size:20px;
-    font-weight:600;
+    font-weight:bold;
 }
 
 /* 导航 */
 nav a{
-    margin-left:28px;
-    color:#888;
-    text-decoration:none;
+    margin-left:20px;
+    color:#aaa;
     cursor:pointer;
-    transition:.3s;
+    text-decoration:none;
 }
+nav a:hover{color:#fff}
 
-nav a.active,
-nav a:hover{
-    color:#fff;
-}
-
-/* 标题 */
+/* Hero */
 .hero{
     padding:80px 60px 40px;
 }
-
 .hero h1{
     font-size:48px;
-    margin-bottom:10px;
 }
-
 .hero p{
     color:#777;
 }
 
-/* 瀑布流 */
+/* 网格 */
 .grid{
-    column-count:4;
-    column-gap:20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
     padding:0 60px 60px;
-}
-
-@media(max-width:1200px){
-    .grid{column-count:3;}
-}
-@media(max-width:800px){
-    .grid{column-count:2;}
-}
-@media(max-width:500px){
-    .grid{column-count:1;}
 }
 
 /* 卡片 */
 .card{
     position:relative;
-    break-inside:avoid;
-    margin-bottom:20px;
-    border-radius:12px;
     overflow:hidden;
+    border-radius:10px;
     cursor:pointer;
 }
-
-/* 图片 */
 .card img{
     width:100%;
     display:block;
-    transition:.4s;
 }
-
-/* 遮罩 */
 .overlay{
     position:absolute;
     bottom:0;
-    left:0;
     width:100%;
     padding:20px;
-    background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
-    opacity:0;
-    transition:.3s;
+    background:linear-gradient(transparent,rgba(0,0,0,.9));
 }
 
-/* hover效果 */
-.card:hover img{
-    transform:scale(1.05);
+/* About */
+.about{
+    padding:80px 60px;
+    border-top:1px solid #222;
 }
+.about h2{margin-bottom:10px;}
+.about p{color:#aaa;}
 
-.card:hover .overlay{
-    opacity:1;
+/* Contact */
+.contact{
+    padding:80px 60px;
+    border-top:1px solid #222;
 }
-
-.title{
-    font-size:16px;
-    font-weight:600;
-}
-
-.type{
-    font-size:12px;
-    color:#aaa;
-    margin-top:6px;
-}
-
-/* 视频 */
-.video iframe{
-    width:100%;
-    height:220px;
-    border:none;
+.contact a{
+    color:#4da3ff;
 }
 </style>
 </head>
@@ -142,85 +94,53 @@ nav a:hover{
 
 <header>
     <div class="logo">林歌作品网</div>
-
     <nav>
-        <a class="active" onclick="filterProjects('all',event)">全部</a>
-        <a onclick="filterProjects('design',event)">平面设计</a>
-        <a onclick="filterProjects('ecommerce',event)">电商设计</a>
-        <a onclick="filterProjects('video',event)">视频</a>
-        <a onclick="filterProjects('wechat',event)">公众号文章</a>
-        <a onclick="filterProjects('news',event)">新闻稿</a>
+        <a href="#">作品</a>
+        <a href="#about">关于我</a>
+        <a href="#contact">联系</a>
     </nav>
 </header>
 
 <section class="hero">
-    <h1>精选作品</h1>
-    <p>Branding · E-commerce · Content Design</p>
+    <h1>设计作品集</h1>
+    <p>平面 · 电商 · 视频 · 内容创作</p>
 </section>
 
 <section class="grid">
 
-    <div class="card design">
+    <!-- 项目1 -->
+    <div class="card" onclick="location.href='project1.html'">
         <img src="https://picsum.photos/600/800?1">
         <div class="overlay">
-            <div class="title">品牌海报设计</div>
-            <div class="type">平面设计</div>
+            品牌海报设计
         </div>
     </div>
 
-    <div class="card ecommerce">
+    <!-- 项目2 -->
+    <div class="card" onclick="location.href='project2.html'">
         <img src="https://picsum.photos/600/700?2">
         <div class="overlay">
-            <div class="title">电商详情页</div>
-            <div class="type">电商设计</div>
-        </div>
-    </div>
-
-    <div class="card video">
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-        </div>
-        <div class="overlay">
-            <div class="title">品牌视频</div>
-            <div class="type">视频</div>
-        </div>
-    </div>
-
-    <div class="card wechat">
-        <img src="https://picsum.photos/600/750?3">
-        <div class="overlay">
-            <div class="title">公众号封面设计</div>
-            <div class="type">公众号文章</div>
-        </div>
-    </div>
-
-    <div class="card news">
-        <img src="https://picsum.photos/600/650?4">
-        <div class="overlay">
-            <div class="title">品牌新闻稿</div>
-            <div class="type">新闻稿</div>
+            电商详情页
         </div>
     </div>
 
 </section>
 
-<script>
-function filterProjects(type,event){
-    const cards=document.querySelectorAll('.card');
-    const navs=document.querySelectorAll('nav a');
+<!-- 关于我 -->
+<section id="about" class="about">
+    <h2>关于我</h2>
+    <p>
+        我是林歌，一名视觉设计师，专注于品牌设计、电商视觉和内容创作。
+        拥有完整的项目经验，从策略到执行，帮助品牌提升视觉表现和转化。
+    </p>
+</section>
 
-    navs.forEach(n=>n.classList.remove('active'));
-    event.target.classList.add('active');
-
-    cards.forEach(card=>{
-        if(type==='all'){
-            card.style.display='block';
-        }else{
-            card.style.display=card.classList.contains(type)?'block':'none';
-        }
-    });
-}
-</script>
+<!-- 联系 -->
+<section id="contact" class="contact">
+    <h2>联系我</h2>
+    <p>邮箱：your@email.com</p>
+    <p>微信：your_wechat</p>
+</section>
 
 </body>
 </html>
