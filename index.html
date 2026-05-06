@@ -12,31 +12,36 @@ body {
   color:#fff;
 }
 
-/* 顶部导航 */
+/* 导航 */
 header {
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:20px 40px;
   border-bottom:1px solid #333;
 }
 
 nav a {
   margin:0 15px;
-  color:#ccc;
+  color:#aaa;
+  cursor:pointer;
   text-decoration:none;
 }
 
-nav a:hover {
+nav a.active {
   color:#fff;
+  border-bottom:2px solid #fff;
 }
 
-/* 标题 */
-h2 {
-  padding:40px 40px 10px;
+/* 区块 */
+.section {
+  display:none;
 }
 
-/* 网格布局 */
+.section.active {
+  display:block;
+}
+
+/* 网格 */
 .grid {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
@@ -53,8 +58,7 @@ h2 {
 }
 
 .card:hover {
-  transform:translateY(-6px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+  transform:translateY(-5px);
 }
 
 .card img {
@@ -62,24 +66,18 @@ h2 {
 }
 
 .card .content {
-  padding:12px;
+  padding:10px;
 }
 
-/* 视频容器（重点🔥） */
+/* 视频 */
 .video-box {
   max-width:800px;
-  margin:20px auto;
+  margin:40px auto;
 }
-
 .video-box iframe {
   width:100%;
   height:450px;
   border-radius:12px;
-}
-
-/* 文章卡片 */
-.article {
-  max-width:400px;
 }
 </style>
 </head>
@@ -89,52 +87,75 @@ h2 {
 <header>
   <div>我的作品集</div>
   <nav>
-    <a href="#">摄影</a>
-    <a href="#">视频</a>
-    <a href="#">文章</a>
+    <a onclick="show('graphic')" class="active">平面设计</a>
+    <a onclick="show('ecommerce')">电商设计</a>
+    <a onclick="show('video')">视频</a>
+    <a onclick="show('wechat')">公众号文章</a>
+    <a onclick="show('news')">新闻稿</a>
   </nav>
 </header>
 
-<!-- 摄影 -->
-<h2>摄影作品</h2>
-<div class="grid">
-
-  <div class="card">
-    <img src="https://picsum.photos/400/300?1">
-    <div class="content">摄影作品1</div>
-  </div>
-
-  <div class="card">
-    <img src="https://picsum.photos/400/300?2">
-    <div class="content">摄影作品2</div>
-  </div>
-
-  <div class="card">
-    <img src="https://picsum.photos/400/300?3">
-    <div class="content">摄影作品3</div>
-  </div>
-
-</div>
-
-<!-- 视频 -->
-<h2>视频作品</h2>
-
-<div class="video-box">
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-</div>
-
-<!-- 文章 -->
-<h2>文章作品</h2>
-
-<div class="grid">
-  <div class="card article">
-    <img src="https://picsum.photos/400/200">
-    <div class="content">
-      公众号文章标题<br>
-      <a href="#" style="color:#4da3ff;">点击阅读</a>
+<!-- 平面设计 -->
+<div id="graphic" class="section active">
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/400/300?1">
+      <div class="content">海报设计</div>
     </div>
   </div>
 </div>
+
+<!-- 电商设计 -->
+<div id="ecommerce" class="section">
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/400/300?2">
+      <div class="content">电商详情页</div>
+    </div>
+  </div>
+</div>
+
+<!-- 视频 -->
+<div id="video" class="section">
+  <div class="video-box">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+  </div>
+</div>
+
+<!-- 公众号文章 -->
+<div id="wechat" class="section">
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/400/200">
+      <div class="content">
+        公众号文章标题<br>
+        <a href="#" style="color:#4da3ff;">阅读</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 新闻稿 -->
+<div id="news" class="section">
+  <div class="grid">
+    <div class="card">
+      <div class="content">
+        新闻稿标题<br>
+        <a href="#" style="color:#4da3ff;">查看</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
 
 </body>
 </html>
