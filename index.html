@@ -8,29 +8,21 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+    font-family:-apple-system,BlinkMacSystemFont;
     background:#0d0d0d;
     color:#fff;
 }
 
-/* 顶部导航 */
+/* 顶部 */
 header{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     padding:20px 60px;
     border-bottom:1px solid #222;
-    position:sticky;
-    top:0;
-    background:#0d0d0d;
-    z-index:999;
 }
-.logo{
-    font-size:18px;
-    font-weight:bold;
-}
+.logo{font-weight:bold;}
 nav a{
-    margin-left:25px;
+    margin-left:20px;
     color:#aaa;
     text-decoration:none;
 }
@@ -40,15 +32,10 @@ nav a:hover{color:#fff;}
 .hero{
     padding:100px 60px;
 }
-.hero h1{
-    font-size:48px;
-    margin-bottom:20px;
-}
-.hero p{
-    color:#888;
-    margin-bottom:30px;
-}
+.hero h1{font-size:42px;}
+.hero p{color:#888;margin:20px 0;}
 .btn{
+    display:inline-block;
     padding:12px 24px;
     background:#fff;
     color:#000;
@@ -57,43 +44,29 @@ nav a:hover{color:#fff;}
     font-weight:bold;
 }
 
+/* 通用 */
+.section{padding:80px 60px;}
+h2{margin-bottom:20px;}
+
 /* 服务 */
 .services{
-    padding:80px 60px;
-}
-.services h2{
-    margin-bottom:40px;
-}
-.service-list{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
 }
 .service{
-    padding:25px;
     background:#161616;
-    border-radius:12px;
-}
-.service h3{
-    margin-bottom:10px;
+    padding:20px;
+    border-radius:10px;
 }
 
 /* 作品 */
-.section{
-    padding:80px 60px;
-}
-.filter{
-    margin-bottom:30px;
-}
 .filter span{
-    margin-right:20px;
+    margin-right:15px;
     cursor:pointer;
     color:#888;
 }
-.filter span.active,
-.filter span:hover{
-    color:#fff;
-}
+.filter span.active{color:#fff;}
 
 .grid{
     column-count:4;
@@ -102,17 +75,12 @@ nav a:hover{color:#fff;}
 .card{
     break-inside:avoid;
     margin-bottom:20px;
-    border-radius:12px;
-    overflow:hidden;
     position:relative;
+    cursor:pointer;
 }
 .card img{
     width:100%;
-    display:block;
-    transition:0.4s;
-}
-.card:hover img{
-    transform:scale(1.05);
+    border-radius:10px;
 }
 .card .info{
     position:absolute;
@@ -122,50 +90,33 @@ nav a:hover{color:#fff;}
     padding:15px;
     background:linear-gradient(transparent,rgba(0,0,0,0.8));
     opacity:0;
-    transition:0.3s;
 }
-.card:hover .info{
-    opacity:1;
-}
+.card:hover .info{opacity:1;}
 
-/* 关于 */
-.about{
-    display:flex;
-    gap:40px;
+/* 弹窗 */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
     align-items:center;
 }
-.about img{
-    width:260px;
-    border-radius:12px;
+.modal-content{
+    background:#111;
+    padding:30px;
+    width:80%;
+    max-width:700px;
 }
-.about p{
-    color:#aaa;
+.close{
+    float:right;
+    cursor:pointer;
 }
 
 /* 联系 */
-.contact{
-    text-align:center;
-}
-.contact h2{
-    margin-bottom:20px;
-}
-.contact p{
-    color:#aaa;
-    margin-bottom:20px;
-}
-
-/* 响应式 */
-@media(max-width:1200px){
-    .grid{column-count:3;}
-}
-@media(max-width:800px){
-    .grid{column-count:2;}
-}
-@media(max-width:500px){
-    .grid{column-count:1;}
-    header{padding:20px;}
-    .hero{padding:60px 20px;}
-}
+.contact{text-align:center;}
+.contact p{color:#aaa;margin:10px 0;}
 </style>
 </head>
 
@@ -176,8 +127,6 @@ nav a:hover{color:#fff;}
     <nav>
         <a href="#">首页</a>
         <a href="#work">作品</a>
-        <a href="#service">服务</a>
-        <a href="#about">关于</a>
         <a href="#contact">联系</a>
     </nav>
 </header>
@@ -185,30 +134,24 @@ nav a:hover{color:#fff;}
 <!-- 首屏 -->
 <section class="hero">
     <h1>品牌视觉 · 电商设计 · 内容创意</h1>
-    <p>为品牌提供高转化视觉设计与内容解决方案</p>
-    <a href="#contact" class="btn">立即合作</a>
+    <p>帮助品牌提升视觉价值与转化率</p>
+    <a href="#contact" class="btn">获取报价</a>
+</section>
+
+<!-- 信任 -->
+<section class="section">
+    <h2>服务经验</h2>
+    <p style="color:#888;">已完成 30+ 项目 · 覆盖电商 / 品牌 / 内容</p>
 </section>
 
 <!-- 服务 -->
-<section class="services" id="service">
+<section class="section">
     <h2>服务内容</h2>
-    <div class="service-list">
-        <div class="service">
-            <h3>平面设计</h3>
-            <p>品牌视觉 / 海报 / KV设计</p>
-        </div>
-        <div class="service">
-            <h3>电商设计</h3>
-            <p>详情页 / 主图 / 活动页</p>
-        </div>
-        <div class="service">
-            <h3>视频制作</h3>
-            <p>短视频 / 宣传片 / 剪辑</p>
-        </div>
-        <div class="service">
-            <h3>内容创作</h3>
-            <p>公众号 / 文案 / 新闻稿</p>
-        </div>
+    <div class="services">
+        <div class="service">平面设计 / 海报 / KV</div>
+        <div class="service">电商设计 / 详情页</div>
+        <div class="service">短视频剪辑</div>
+        <div class="service">公众号 / 文案</div>
     </div>
 </section>
 
@@ -218,54 +161,56 @@ nav a:hover{color:#fff;}
 
     <div class="filter">
         <span class="active">全部</span>
-        <span>平面设计</span>
-        <span>电商设计</span>
+        <span>电商</span>
+        <span>品牌</span>
         <span>视频</span>
-        <span>文章</span>
     </div>
 
     <div class="grid">
-        <div class="card">
+        <div class="card" onclick="openModal('电商详情页设计','转化率提升30%')">
             <img src="https://picsum.photos/500/700?1">
-            <div class="info">品牌海报设计</div>
-        </div>
-
-        <div class="card">
-            <img src="https://picsum.photos/500/600?2">
             <div class="info">电商详情页</div>
         </div>
 
-        <div class="card">
+        <div class="card" onclick="openModal('品牌海报设计','曝光提升50%')">
+            <img src="https://picsum.photos/500/600?2">
+            <div class="info">品牌海报</div>
+        </div>
+
+        <div class="card" onclick="openModal('短视频项目','播放量10万+')">
             <img src="https://picsum.photos/500/800?3">
-            <div class="info">短视频项目</div>
+            <div class="info">短视频</div>
         </div>
-
-        <div class="card">
-            <img src="https://picsum.photos/500/650?4">
-            <div class="info">公众号文章</div>
-        </div>
-    </div>
-</section>
-
-<!-- 关于 -->
-<section class="section" id="about">
-    <h2>关于我</h2>
-    <div class="about">
-        <img src="https://picsum.photos/300/300">
-        <p>
-        我是林歌，一名视觉设计师，专注品牌设计、电商视觉与内容创作。
-        已服务多个项目，具备从创意到落地的完整能力。
-        </p>
     </div>
 </section>
 
 <!-- 联系 -->
 <section class="section contact" id="contact">
-    <h2>合作联系</h2>
-    <p>欢迎品牌方 / 公司 / 个人合作</p>
-    <p>微信：177 0027 5778</p>
-    <p>邮箱：2900242076@qq.com</p>
+    <h2>合作咨询</h2>
+    <p>欢迎品牌合作 / 外包项目</p>
+    <p>微信：your_wechat</p>
+    <p>邮箱：your@email.com</p>
 </section>
+
+<!-- 弹窗 -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+    </div>
+</div>
+
+<script>
+function openModal(title,desc){
+    document.getElementById('modal').style.display='flex';
+    document.getElementById('modalTitle').innerText=title;
+    document.getElementById('modalDesc').innerText=desc;
+}
+function closeModal(){
+    document.getElementById('modal').style.display='none';
+}
+</script>
 
 </body>
 </html>
