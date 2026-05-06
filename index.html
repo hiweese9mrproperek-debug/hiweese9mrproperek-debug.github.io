@@ -1,68 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>My Portfolio</title>
+<meta charset="utf-8">
+<title>My Portfolio</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #111;
-      color: #fff;
-    }
+<style>
+body {
+  margin:0;
+  font-family:Arial;
+  background:#111;
+  color:#fff;
+}
 
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px;
-      border-bottom:1px solid #333;
-    }
+/* 顶部导航 */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  border-bottom:1px solid #333;
+}
 
-    nav a {
-      margin:0 10px;
-      color:#fff;
-      text-decoration:none;
-    }
+nav a {
+  margin:0 15px;
+  color:#ccc;
+  text-decoration:none;
+}
 
-    h2 {
-      padding:20px;
-    }
+nav a:hover {
+  color:#fff;
+}
 
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-      gap:20px;
-      padding:20px;
-    }
+/* 标题 */
+h2 {
+  padding:40px 40px 10px;
+}
 
-    .card {
-      background:#222;
-      border-radius:12px;
-      overflow:hidden;
-      transition:0.3s;
-    }
+/* 网格布局 */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:20px;
+  padding:20px 40px;
+}
 
-    .card:hover {
-      transform:translateY(-5px) scale(1.03);
-      box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    }
+/* 卡片 */
+.card {
+  background:#1a1a1a;
+  border-radius:12px;
+  overflow:hidden;
+  transition:0.3s;
+}
 
-    img {
-      width:100%;
-    }
+.card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
 
-    .content {
-      padding:10px;
-    }
-  </style>
+.card img {
+  width:100%;
+}
+
+.card .content {
+  padding:12px;
+}
+
+/* 视频容器（重点🔥） */
+.video-box {
+  max-width:800px;
+  margin:20px auto;
+}
+
+.video-box iframe {
+  width:100%;
+  height:450px;
+  border-radius:12px;
+}
+
+/* 文章卡片 */
+.article {
+  max-width:400px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div style="font-size:20px;">我的作品集</div>
+  <div>我的作品集</div>
   <nav>
     <a href="#">摄影</a>
     <a href="#">视频</a>
@@ -73,6 +98,7 @@
 <!-- 摄影 -->
 <h2>摄影作品</h2>
 <div class="grid">
+
   <div class="card">
     <img src="https://picsum.photos/400/300?1">
     <div class="content">摄影作品1</div>
@@ -82,23 +108,29 @@
     <img src="https://picsum.photos/400/300?2">
     <div class="content">摄影作品2</div>
   </div>
+
+  <div class="card">
+    <img src="https://picsum.photos/400/300?3">
+    <div class="content">摄影作品3</div>
+  </div>
+
 </div>
 
 <!-- 视频 -->
 <h2>视频作品</h2>
-<div style="padding:20px;">
-  <iframe width="100%" height="400"
-  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-  frameborder="0" allowfullscreen></iframe>
+
+<div class="video-box">
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
 </div>
 
 <!-- 文章 -->
 <h2>文章作品</h2>
-<div style="padding:20px;">
-  <div class="card">
+
+<div class="grid">
+  <div class="card article">
     <img src="https://picsum.photos/400/200">
     <div class="content">
-      公众号文章标题 <br>
+      公众号文章标题<br>
       <a href="#" style="color:#4da3ff;">点击阅读</a>
     </div>
   </div>
