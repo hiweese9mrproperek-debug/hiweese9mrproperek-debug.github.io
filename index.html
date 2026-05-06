@@ -2,187 +2,121 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>林歌作品网</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+    font-family:-apple-system,BlinkMacSystemFont;
     background:#0d0d0d;
     color:#fff;
 }
 
-/* ===== 导航 ===== */
+/* 顶部 */
 header{
-    position:fixed;
-    width:100%;
-    top:0;
-    background:rgba(13,13,13,0.9);
-    backdrop-filter:blur(10px);
     display:flex;
     justify-content:space-between;
     padding:20px 60px;
-    z-index:999;
+    border-bottom:1px solid #222;
 }
-.logo{font-size:18px;font-weight:600}
+.logo{font-weight:bold;}
 nav a{
-    margin-left:30px;
+    margin-left:20px;
     color:#aaa;
     text-decoration:none;
 }
-nav a:hover{color:#fff}
+nav a:hover{color:#fff;}
 
-/* ===== 首屏（卖钱核心）===== */
+/* 首屏 */
 .hero{
-    padding:160px 60px 80px;
-    max-width:900px;
+    padding:100px 60px;
 }
-.hero h1{
-    font-size:56px;
-    margin-bottom:20px;
-}
-.hero p{
-    color:#aaa;
-    margin-bottom:30px;
-}
-.cta{
+.hero h1{font-size:42px;}
+.hero p{color:#888;margin:20px 0;}
+.btn{
     display:inline-block;
     padding:12px 24px;
     background:#fff;
     color:#000;
     border-radius:30px;
     text-decoration:none;
-    font-weight:600;
+    font-weight:bold;
 }
 
-/* ===== 信任背书 ===== */
-.stats{
-    display:flex;
-    gap:60px;
-    padding:40px 60px;
-}
-.stat h3{font-size:32px}
-.stat p{color:#888}
+/* 通用 */
+.section{padding:80px 60px;}
+h2{margin-bottom:20px;}
 
-/* ===== 服务 ===== */
+/* 服务 */
 .services{
-    padding:60px;
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
 }
 .service{
-    background:#111;
-    padding:30px;
-    border-radius:12px;
+    background:#161616;
+    padding:20px;
+    border-radius:10px;
 }
-.service h4{margin-bottom:10px}
 
-/* ===== 分类 ===== */
-.filter{
-    padding:20px 60px;
-}
+/* 作品 */
 .filter span{
-    margin-right:20px;
+    margin-right:15px;
     cursor:pointer;
     color:#888;
 }
-.filter span.active{
-    color:#fff;
-    border-bottom:2px solid #fff;
-}
+.filter span.active{color:#fff;}
 
-/* ===== 瀑布流 ===== */
 .grid{
     column-count:4;
     column-gap:20px;
-    padding:20px 60px;
 }
 .card{
     break-inside:avoid;
     margin-bottom:20px;
-    cursor:pointer;
     position:relative;
-    overflow:hidden;
-    border-radius:12px;
+    cursor:pointer;
 }
 .card img{
     width:100%;
-    transition:.4s;
+    border-radius:10px;
 }
-.card:hover img{
-    transform:scale(1.08);
-}
-.card-title{
+.card .info{
     position:absolute;
-    bottom:10px;
-    left:10px;
-    font-size:14px;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:15px;
+    background:linear-gradient(transparent,rgba(0,0,0,0.8));
     opacity:0;
-    transition:.3s;
 }
-.card:hover .card-title{
-    opacity:1;
-}
+.card:hover .info{opacity:1;}
 
-/* ===== 案例详情页（接单级）===== */
+/* 弹窗 */
 .modal{
+    display:none;
     position:fixed;
     top:0;left:0;
     width:100%;height:100%;
-    background:#000;
-    display:none;
-    overflow:auto;
-    z-index:1000;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
 }
 .modal-content{
-    max-width:900px;
-    margin:100px auto;
+    background:#111;
+    padding:30px;
+    width:80%;
+    max-width:700px;
 }
-.modal h2{margin-bottom:10px}
-.modal p{color:#aaa;margin-bottom:20px}
-.modal img{width:100%;margin:20px 0;border-radius:10px}
 .close{
-    position:fixed;
-    top:30px;
-    right:40px;
-    font-size:30px;
+    float:right;
     cursor:pointer;
 }
 
-/* CTA 联系 */
-.contact-box{
-    margin-top:40px;
-    padding:30px;
-    background:#111;
-    border-radius:12px;
-    text-align:center;
-}
-.contact-btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 20px;
-    background:#fff;
-    color:#000;
-    border-radius:20px;
-    text-decoration:none;
-}
-
-/* ===== 动画 ===== */
-.fade{
-    animation:fadeIn .6s ease;
-}
-@keyframes fadeIn{
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1}
-}
-
-/* 响应式 */
-@media(max-width:1200px){.grid{column-count:3}}
-@media(max-width:768px){
-    .grid{column-count:2}
-    .services{grid-template-columns:1fr}
-}
+/* 联系 */
+.contact{text-align:center;}
+.contact p{color:#aaa;margin:10px 0;}
 </style>
 </head>
 
@@ -192,165 +126,90 @@ nav a:hover{color:#fff}
     <div class="logo">林歌作品网</div>
     <nav>
         <a href="#">首页</a>
-        <a href="#">作品</a>
-        <a href="#">服务</a>
-        <a href="#">关于</a>
-        <a href="#">联系</a>
+        <a href="#work">作品</a>
+        <a href="#contact">联系</a>
     </nav>
 </header>
 
-<!-- ===== 首屏（核心卖点）===== -->
+<!-- 首屏 -->
 <section class="hero">
-    <h1>帮助品牌提升转化的设计师</h1>
-    <p>专注电商视觉 / 品牌设计 / 内容创作，帮你把流量变成成交</p>
-    <a class="cta" href="#contact">立即合作</a>
+    <h1>品牌视觉 · 电商设计 · 内容创意</h1>
+    <p>帮助品牌提升视觉价值与转化率</p>
+    <a href="#contact" class="btn">获取报价</a>
 </section>
 
-<!-- ===== 信任 ===== -->
-<div class="stats">
-    <div class="stat">
-        <h3>30+</h3>
-        <p>服务项目</p>
-    </div>
-    <div class="stat">
-        <h3>10+</h3>
-        <p>行业经验</p>
-    </div>
-    <div class="stat">
-        <h3>90%</h3>
-        <p>客户复购</p>
-    </div>
-</div>
+<!-- 信任 -->
+<section class="section">
+    <h2>服务经验</h2>
+    <p style="color:#888;">已完成 30+ 项目 · 覆盖电商 / 品牌 / 内容</p>
+</section>
 
-<!-- ===== 服务 ===== -->
-<section class="services">
-    <div class="service">
-        <h4>电商设计</h4>
-        <p>详情页 / 主图 / 转化优化</p>
-    </div>
-    <div class="service">
-        <h4>品牌设计</h4>
-        <p>LOGO / VI / 海报</p>
-    </div>
-    <div class="service">
-        <h4>内容创作</h4>
-        <p>短视频 / 公众号 / 视觉包装</p>
+<!-- 服务 -->
+<section class="section">
+    <h2>服务内容</h2>
+    <div class="services">
+        <div class="service">平面设计 / 海报 / KV</div>
+        <div class="service">电商设计 / 详情页</div>
+        <div class="service">短视频剪辑</div>
+        <div class="service">公众号 / 文案</div>
     </div>
 </section>
 
-<!-- 分类 -->
-<div class="filter">
-    <span class="active" onclick="filterWork('all')">全部</span>
-    <span onclick="filterWork('design')">平面设计</span>
-    <span onclick="filterWork('ecom')">电商设计</span>
-    <span onclick="filterWork('video')">视频</span>
-    <span onclick="filterWork('article')">文章</span>
-</div>
+<!-- 作品 -->
+<section class="section" id="work">
+    <h2>精选案例</h2>
 
-<!-- 瀑布流 -->
-<div class="grid" id="grid"></div>
+    <div class="filter">
+        <span class="active">全部</span>
+        <span>电商</span>
+        <span>品牌</span>
+        <span>视频</span>
+    </div>
 
-<!-- 详情 -->
+    <div class="grid">
+        <div class="card" onclick="openModal('电商详情页设计','转化率提升30%')">
+            <img src="https://picsum.photos/500/700?1">
+            <div class="info">电商详情页</div>
+        </div>
+
+        <div class="card" onclick="openModal('品牌海报设计','曝光提升50%')">
+            <img src="https://picsum.photos/500/600?2">
+            <div class="info">品牌海报</div>
+        </div>
+
+        <div class="card" onclick="openModal('短视频项目','播放量10万+')">
+            <img src="https://picsum.photos/500/800?3">
+            <div class="info">短视频</div>
+        </div>
+    </div>
+</section>
+
+<!-- 联系 -->
+<section class="section contact" id="contact">
+    <h2>合作咨询</h2>
+    <p>欢迎品牌合作 / 外包项目</p>
+    <p>微信：your_wechat</p>
+    <p>邮箱：your@email.com</p>
+</section>
+
+<!-- 弹窗 -->
 <div class="modal" id="modal">
-    <div class="close" onclick="closeModal()">×</div>
-    <div class="modal-content" id="modalContent"></div>
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+    </div>
 </div>
 
 <script>
-
-/* ===== 数据（接单级：包含“结果”）===== */
-const works = [
-{
-    title:"电商详情页优化",
-    category:"ecom",
-    cover:"https://picsum.photos/500/700?1",
-    desc:"帮助客户提升页面转化率",
-    result:"转化率提升35%",
-    images:[
-        "https://picsum.photos/800/1000?1",
-        "https://picsum.photos/800/1000?2"
-    ]
-},
-{
-    title:"品牌视觉设计",
-    category:"design",
-    cover:"https://picsum.photos/500/600?3",
-    desc:"打造统一品牌视觉体系",
-    result:"品牌识别度提升",
-    images:[
-        "https://picsum.photos/800/1000?3"
-    ]
-},
-{
-    title:"短视频剪辑",
-    category:"video",
-    cover:"https://picsum.photos/500/650?4",
-    desc:"提升内容传播效果",
-    result:"播放量提升3倍",
-    images:[
-        "https://picsum.photos/800/600?4"
-    ]
+function openModal(title,desc){
+    document.getElementById('modal').style.display='flex';
+    document.getElementById('modalTitle').innerText=title;
+    document.getElementById('modalDesc').innerText=desc;
 }
-];
-
-/* 渲染 */
-function render(list){
-    const grid=document.getElementById("grid");
-    grid.innerHTML="";
-    list.forEach(w=>{
-        const div=document.createElement("div");
-        div.className="card fade";
-        div.innerHTML=`
-            <img src="${w.cover}">
-            <div class="card-title">${w.title}</div>
-        `;
-        div.onclick=()=>openModal(w);
-        grid.appendChild(div);
-    });
-}
-
-/* 筛选 */
-function filterWork(type){
-    document.querySelectorAll(".filter span").forEach(s=>s.classList.remove("active"));
-    event.target.classList.add("active");
-
-    if(type==="all") render(works);
-    else render(works.filter(w=>w.category===type));
-}
-
-/* ===== 案例详情（接单级）===== */
-function openModal(work){
-    const modal=document.getElementById("modal");
-    const content=document.getElementById("modalContent");
-
-    content.innerHTML=`
-        <h2>${work.title}</h2>
-        <p>${work.desc}</p>
-        <p><b>项目结果：</b>${work.result}</p>
-    `;
-
-    work.images.forEach(img=>{
-        content.innerHTML+=`<img src="${img}">`;
-    });
-
-    content.innerHTML+=`
-        <div class="contact-box">
-            <h3>需要类似项目？</h3>
-            <p>微信 / 邮箱：your@email.com</p>
-            <a class="contact-btn" href="#">立即咨询</a>
-        </div>
-    `;
-
-    modal.style.display="block";
-}
-
 function closeModal(){
-    document.getElementById("modal").style.display="none";
+    document.getElementById('modal').style.display='none';
 }
-
-/* 初始化 */
-render(works);
-
 </script>
 
 </body>
