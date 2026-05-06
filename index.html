@@ -25,37 +25,69 @@ header{
     z-index:999;
 }
 .logo{font-size:18px;font-weight:600}
-nav a{
-    margin-left:30px;
-    color:#aaa;
-    text-decoration:none;
-}
+nav a{margin-left:30px;color:#aaa;text-decoration:none}
 nav a:hover{color:#fff}
 
-/* ===== 首屏 ===== */
+/* ===== 首屏（成交核心） ===== */
 .hero{
-    padding:160px 60px 80px;
+    padding:160px 60px 100px;
 }
 .hero h1{
-    font-size:64px;
+    font-size:56px;
+    line-height:1.4;
 }
-.hero p{color:#aaa;margin-top:10px}
+.hero p{
+    margin-top:20px;
+    color:#aaa;
+    max-width:500px;
+}
+.cta-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 28px;
+    border:1px solid #fff;
+    text-decoration:none;
+    color:#fff;
+    transition:.3s;
+}
+.cta-btn:hover{
+    background:#fff;
+    color:#000;
+}
 
-/* ===== 分类 ===== */
-.filter{
-    padding:20px 60px;
+/* ===== 信任背书 ===== */
+.trust{
+    display:flex;
+    gap:60px;
+    padding:60px;
 }
-.filter span{
-    margin-right:20px;
-    cursor:pointer;
+.trust div{
+    font-size:28px;
+}
+.trust span{
+    display:block;
+    font-size:14px;
     color:#888;
 }
-.filter span.active{
-    color:#fff;
-    border-bottom:2px solid #fff;
-}
 
-/* ===== 瀑布流 ===== */
+/* ===== 服务 ===== */
+.services{
+    padding:60px;
+}
+.service-grid{
+    display:flex;
+    gap:30px;
+}
+.service{
+    flex:1;
+    background:#111;
+    padding:30px;
+    border-radius:10px;
+}
+.service h3{margin-bottom:10px}
+.service p{color:#aaa;font-size:14px}
+
+/* ===== 案例 ===== */
 .grid{
     column-count:4;
     column-gap:20px;
@@ -66,38 +98,23 @@ nav a:hover{color:#fff}
     margin-bottom:20px;
     cursor:pointer;
     position:relative;
+    border-radius:12px;
     overflow:hidden;
-    border-radius:12px;
-    transform:translateY(20px);
     opacity:0;
-    transition:.6s;
+    transform:translateY(20px);
+    transition:.5s;
 }
-.card.show{
-    transform:translateY(0);
-    opacity:1;
-}
-.card img{
-    width:100%;
-    border-radius:12px;
-    transition:.4s;
-}
-.card:hover img{
-    transform:scale(1.08);
-}
-.card:hover{
-    box-shadow:0 10px 30px rgba(0,0,0,0.6);
-}
+.card.show{opacity:1;transform:translateY(0)}
+.card img{width:100%;transition:.4s}
+.card:hover img{transform:scale(1.08)}
 .card-title{
     position:absolute;
     bottom:10px;
     left:10px;
     font-size:14px;
     opacity:0;
-    transition:.3s;
 }
-.card:hover .card-title{
-    opacity:1;
-}
+.card:hover .card-title{opacity:1}
 
 /* ===== 详情页 ===== */
 .detail{
@@ -106,48 +123,30 @@ nav a:hover{color:#fff}
     max-width:900px;
     margin:auto;
 }
-.detail h1{
-    font-size:40px;
-    margin-bottom:10px;
-}
-.detail p{
-    color:#aaa;
-    margin-bottom:40px;
-}
-.detail img{
-    width:100%;
-    margin-bottom:20px;
-    border-radius:10px;
-}
+.detail h1{font-size:40px}
+.detail p{color:#aaa;margin:20px 0}
+.detail img{width:100%;margin:20px 0;border-radius:10px}
 
-/* CTA */
-.cta{
+/* 联系区 */
+.contact{
     margin-top:40px;
-    padding:20px;
+    padding:30px;
     background:#111;
     border-radius:10px;
-    text-align:center;
 }
-.cta a{
-    color:#fff;
+.contact a{
+    display:inline-block;
+    margin-top:10px;
     border:1px solid #fff;
     padding:10px 20px;
     text-decoration:none;
-}
-
-/* 返回 */
-.back{
-    margin-bottom:30px;
-    cursor:pointer;
-    color:#aaa;
+    color:#fff;
 }
 
 /* 响应式 */
-@media(max-width:1200px){
-    .grid{column-count:3}
-}
-@media(max-width:768px){
+@media(max-width:1000px){
     .grid{column-count:2}
+    .service-grid{flex-direction:column}
 }
 </style>
 </head>
@@ -157,151 +156,142 @@ nav a:hover{color:#fff}
 <header>
     <div class="logo">林歌作品网</div>
     <nav>
-        <a href="/">首页</a>
+        <a href="#">首页</a>
         <a href="#">作品</a>
         <a href="#">服务</a>
-        <a href="#">关于</a>
         <a href="#">联系</a>
     </nav>
 </header>
 
-<!-- 首页 -->
+<!-- ===== 首页 ===== -->
 <div id="home">
+
 <section class="hero">
-    <h1>设计作品集</h1>
-    <p>平面 · 电商 · 视频 · 内容创作</p>
+    <h1>为品牌提供高转化设计解决方案</h1>
+    <p>专注平面设计、电商视觉、短视频内容，帮助客户提升品牌形象与转化率</p>
+    <a href="mailto:xxx@qq.com" class="cta-btn">立即咨询</a>
 </section>
 
-<div class="filter">
-    <span class="active" onclick="filterWork('all',event)">全部</span>
-    <span onclick="filterWork('design',event)">平面设计</span>
-    <span onclick="filterWork('ecom',event)">电商设计</span>
-    <span onclick="filterWork('video',event)">视频</span>
-    <span onclick="filterWork('article',event)">文章</span>
+<!-- 信任 -->
+<div class="trust">
+    <div>50+<span>服务客户</span></div>
+    <div>100+<span>项目经验</span></div>
+    <div>3年+<span>设计经验</span></div>
 </div>
 
+<!-- 服务 -->
+<section class="services">
+    <h2>服务内容</h2>
+    <div class="service-grid">
+        <div class="service">
+            <h3>平面设计</h3>
+            <p>品牌海报 / 宣传物料 / VI视觉</p>
+        </div>
+        <div class="service">
+            <h3>电商设计</h3>
+            <p>详情页 / 主图 / 提升转化</p>
+        </div>
+        <div class="service">
+            <h3>视频制作</h3>
+            <p>短视频剪辑 / 内容创作</p>
+        </div>
+    </div>
+</section>
+
+<!-- 案例 -->
 <div class="grid" id="grid"></div>
+
 </div>
 
-<!-- 详情页 -->
+<!-- ===== 详情页 ===== -->
 <div class="detail" id="detail">
-    <div class="back" onclick="goHome()">← 返回</div>
+    <div onclick="goHome()" style="cursor:pointer;color:#aaa">← 返回</div>
     <h1 id="dTitle"></h1>
     <p id="dDesc"></p>
+    <div id="dResult" style="color:#0f0"></div>
     <div id="dImages"></div>
 
-    <div class="cta">
-        <p>需要类似项目？欢迎联系</p>
+    <div class="contact">
+        <h3>需要类似项目？</h3>
+        <p>微信：linge_design</p>
         <a href="mailto:xxx@qq.com">立即合作</a>
     </div>
 </div>
 
 <script>
 
-/* ===== JSON数据（可换成外部json文件） ===== */
-const works = [
+/* ===== 数据（可扩展） ===== */
+const works=[
 {
-    id:1,
-    title:"品牌海报设计",
-    desc:"为品牌打造视觉传播方案",
-    category:"design",
-    cover:"https://picsum.photos/500/700?1",
-    images:[
-        "https://picsum.photos/800/1000?1",
-        "https://picsum.photos/800/1000?2"
-    ]
+id:1,
+title:"品牌海报设计",
+desc:"为品牌打造统一视觉体系",
+result:"曝光提升200%",
+cover:"https://picsum.photos/500/700?1",
+images:["https://picsum.photos/800/1000?1"]
 },
 {
-    id:2,
-    title:"电商详情页",
-    desc:"提升转化率的电商设计",
-    category:"ecom",
-    cover:"https://picsum.photos/500/600?2",
-    images:[
-        "https://picsum.photos/800/1000?2"
-    ]
-},
-{
-    id:3,
-    title:"短视频剪辑",
-    desc:"高转化短视频内容制作",
-    category:"video",
-    cover:"https://picsum.photos/500/650?3",
-    images:[
-        "https://picsum.photos/800/600?3"
-    ]
+id:2,
+title:"电商详情页",
+desc:"优化页面结构提升转化",
+result:"转化率提升35%",
+cover:"https://picsum.photos/500/600?2",
+images:["https://picsum.photos/800/1000?2"]
 }
 ];
 
-/* ===== 渲染 ===== */
-function render(list){
-    const grid=document.getElementById("grid");
-    grid.innerHTML="";
-
-    list.forEach((w,i)=>{
-        const div=document.createElement("div");
-        div.className="card";
-        div.innerHTML=`
-            <img src="${w.cover}">
-            <div class="card-title">${w.title}</div>
-        `;
-
-        div.onclick=()=>{
-            history.pushState(null,"",`?id=${w.id}`);
-            openDetail(w.id);
-        }
-
-        grid.appendChild(div);
-
-        setTimeout(()=>div.classList.add("show"),i*100);
-    });
+/* 渲染 */
+function render(){
+const grid=document.getElementById("grid");
+grid.innerHTML="";
+works.forEach((w,i)=>{
+const div=document.createElement("div");
+div.className="card";
+div.innerHTML=`
+<img src="${w.cover}">
+<div class="card-title">${w.title}</div>
+`;
+div.onclick=()=>{
+history.pushState(null,"",`?id=${w.id}`);
+openDetail(w.id);
+};
+grid.appendChild(div);
+setTimeout(()=>div.classList.add("show"),i*100);
+});
 }
 
-/* ===== 筛选 ===== */
-function filterWork(type,e){
-    document.querySelectorAll(".filter span").forEach(s=>s.classList.remove("active"));
-    e.target.classList.add("active");
-
-    if(type==="all") render(works);
-    else render(works.filter(w=>w.category===type));
-}
-
-/* ===== 打开详情 ===== */
+/* 详情 */
 function openDetail(id){
-    const work=works.find(w=>w.id==id);
+const w=works.find(i=>i.id==id);
 
-    document.getElementById("home").style.display="none";
-    document.getElementById("detail").style.display="block";
+document.getElementById("home").style.display="none";
+document.getElementById("detail").style.display="block";
 
-    document.getElementById("dTitle").innerText=work.title;
-    document.getElementById("dDesc").innerText=work.desc;
+dTitle.innerText=w.title;
+dDesc.innerText=w.desc;
+dResult.innerText="项目成果："+w.result;
 
-    const box=document.getElementById("dImages");
-    box.innerHTML="";
-    work.images.forEach(img=>{
-        const el=document.createElement("img");
-        el.src=img;
-        box.appendChild(el);
-    });
+const box=document.getElementById("dImages");
+box.innerHTML="";
+w.images.forEach(img=>{
+const el=document.createElement("img");
+el.src=img;
+box.appendChild(el);
+});
 }
 
 /* 返回 */
 function goHome(){
-    history.pushState(null,"","/");
-    document.getElementById("detail").style.display="none";
-    document.getElementById("home").style.display="block";
+history.pushState(null,"","/");
+detail.style.display="none";
+home.style.display="block";
 }
 
-/* ===== 首次加载判断URL ===== */
+/* 初始化 */
 window.onload=()=>{
-    const params=new URLSearchParams(location.search);
-    const id=params.get("id");
-
-    if(id){
-        openDetail(id);
-    }else{
-        render(works);
-    }
+const id=new URLSearchParams(location.search).get("id");
+if(id) openDetail(id);
+else render();
 };
 
 </script>
