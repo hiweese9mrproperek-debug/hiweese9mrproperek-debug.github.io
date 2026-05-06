@@ -2,90 +2,169 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>林歌作品网</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    margin:0;
-    background:#0b0b0b;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+    background:#0d0d0d;
     color:#fff;
-    font-family:Arial;
 }
 
-/* 顶部 */
+/* 顶部导航 */
 header{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:20px 60px;
     border-bottom:1px solid #222;
+    position:sticky;
+    top:0;
+    background:#0d0d0d;
+    z-index:999;
 }
-
 .logo{
+    font-size:18px;
     font-weight:bold;
 }
-
-/* 导航 */
 nav a{
-    margin-left:20px;
+    margin-left:25px;
     color:#aaa;
-    cursor:pointer;
     text-decoration:none;
 }
-nav a:hover{color:#fff}
+nav a:hover{color:#fff;}
 
-/* Hero */
+/* 首屏 */
 .hero{
-    padding:80px 60px 40px;
+    padding:100px 60px;
 }
 .hero h1{
     font-size:48px;
+    margin-bottom:20px;
 }
 .hero p{
-    color:#777;
+    color:#888;
+    margin-bottom:30px;
+}
+.btn{
+    padding:12px 24px;
+    background:#fff;
+    color:#000;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-/* 网格 */
-.grid{
+/* 服务 */
+.services{
+    padding:80px 60px;
+}
+.services h2{
+    margin-bottom:40px;
+}
+.service-list{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-    padding:0 60px 60px;
+}
+.service{
+    padding:25px;
+    background:#161616;
+    border-radius:12px;
+}
+.service h3{
+    margin-bottom:10px;
 }
 
-/* 卡片 */
-.card{
-    position:relative;
-    overflow:hidden;
-    border-radius:10px;
+/* 作品 */
+.section{
+    padding:80px 60px;
+}
+.filter{
+    margin-bottom:30px;
+}
+.filter span{
+    margin-right:20px;
     cursor:pointer;
+    color:#888;
+}
+.filter span.active,
+.filter span:hover{
+    color:#fff;
+}
+
+.grid{
+    column-count:4;
+    column-gap:20px;
+}
+.card{
+    break-inside:avoid;
+    margin-bottom:20px;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
 }
 .card img{
     width:100%;
     display:block;
+    transition:0.4s;
 }
-.overlay{
+.card:hover img{
+    transform:scale(1.05);
+}
+.card .info{
     position:absolute;
     bottom:0;
+    left:0;
     width:100%;
-    padding:20px;
-    background:linear-gradient(transparent,rgba(0,0,0,.9));
+    padding:15px;
+    background:linear-gradient(transparent,rgba(0,0,0,0.8));
+    opacity:0;
+    transition:0.3s;
+}
+.card:hover .info{
+    opacity:1;
 }
 
-/* About */
+/* 关于 */
 .about{
-    padding:80px 60px;
-    border-top:1px solid #222;
+    display:flex;
+    gap:40px;
+    align-items:center;
 }
-.about h2{margin-bottom:10px;}
-.about p{color:#aaa;}
+.about img{
+    width:260px;
+    border-radius:12px;
+}
+.about p{
+    color:#aaa;
+}
 
-/* Contact */
+/* 联系 */
 .contact{
-    padding:80px 60px;
-    border-top:1px solid #222;
+    text-align:center;
 }
-.contact a{
-    color:#4da3ff;
+.contact h2{
+    margin-bottom:20px;
+}
+.contact p{
+    color:#aaa;
+    margin-bottom:20px;
+}
+
+/* 响应式 */
+@media(max-width:1200px){
+    .grid{column-count:3;}
+}
+@media(max-width:800px){
+    .grid{column-count:2;}
+}
+@media(max-width:500px){
+    .grid{column-count:1;}
+    header{padding:20px;}
+    .hero{padding:60px 20px;}
 }
 </style>
 </head>
@@ -95,51 +174,97 @@ nav a:hover{color:#fff}
 <header>
     <div class="logo">林歌作品网</div>
     <nav>
-        <a href="#">作品</a>
-        <a href="#about">关于我</a>
+        <a href="#">首页</a>
+        <a href="#work">作品</a>
+        <a href="#service">服务</a>
+        <a href="#about">关于</a>
         <a href="#contact">联系</a>
     </nav>
 </header>
 
+<!-- 首屏 -->
 <section class="hero">
-    <h1>设计作品集</h1>
-    <p>平面 · 电商 · 视频 · 内容创作</p>
+    <h1>品牌视觉 · 电商设计 · 内容创意</h1>
+    <p>为品牌提供高转化视觉设计与内容解决方案</p>
+    <a href="#contact" class="btn">立即合作</a>
 </section>
 
-<section class="grid">
-
-    <!-- 项目1 -->
-    <div class="card" onclick="location.href='project1.html'">
-        <img src="https://picsum.photos/600/800?1">
-        <div class="overlay">
-            品牌海报设计
+<!-- 服务 -->
+<section class="services" id="service">
+    <h2>服务内容</h2>
+    <div class="service-list">
+        <div class="service">
+            <h3>平面设计</h3>
+            <p>品牌视觉 / 海报 / KV设计</p>
+        </div>
+        <div class="service">
+            <h3>电商设计</h3>
+            <p>详情页 / 主图 / 活动页</p>
+        </div>
+        <div class="service">
+            <h3>视频制作</h3>
+            <p>短视频 / 宣传片 / 剪辑</p>
+        </div>
+        <div class="service">
+            <h3>内容创作</h3>
+            <p>公众号 / 文案 / 新闻稿</p>
         </div>
     </div>
-
-    <!-- 项目2 -->
-    <div class="card" onclick="location.href='project2.html'">
-        <img src="https://picsum.photos/600/700?2">
-        <div class="overlay">
-            电商详情页
-        </div>
-    </div>
-
 </section>
 
-<!-- 关于我 -->
-<section id="about" class="about">
+<!-- 作品 -->
+<section class="section" id="work">
+    <h2>精选案例</h2>
+
+    <div class="filter">
+        <span class="active">全部</span>
+        <span>平面设计</span>
+        <span>电商设计</span>
+        <span>视频</span>
+        <span>文章</span>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <img src="https://picsum.photos/500/700?1">
+            <div class="info">品牌海报设计</div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/500/600?2">
+            <div class="info">电商详情页</div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/500/800?3">
+            <div class="info">短视频项目</div>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/500/650?4">
+            <div class="info">公众号文章</div>
+        </div>
+    </div>
+</section>
+
+<!-- 关于 -->
+<section class="section" id="about">
     <h2>关于我</h2>
-    <p>
-        我是林歌，一名视觉设计师，专注于品牌设计、电商视觉和内容创作。
-        拥有完整的项目经验，从策略到执行，帮助品牌提升视觉表现和转化。
-    </p>
+    <div class="about">
+        <img src="https://picsum.photos/300/300">
+        <p>
+        我是林歌，一名视觉设计师，专注品牌设计、电商视觉与内容创作。
+        已服务多个项目，具备从创意到落地的完整能力。
+        </p>
+    </div>
 </section>
 
 <!-- 联系 -->
-<section id="contact" class="contact">
-    <h2>联系我</h2>
+<section class="section contact" id="contact">
+    <h2>合作联系</h2>
+    <p>欢迎品牌方 / 公司 / 个人合作</p>
+    <p>微信：177 0027 5778</p>
     <p>邮箱：2900242076@qq.com</p>
-    <p>微信：17700275778</p>
 </section>
 
 </body>
