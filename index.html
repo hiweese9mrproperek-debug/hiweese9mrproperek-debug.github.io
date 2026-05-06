@@ -2,39 +2,59 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>My Portfolio</title>
+<title>我的作品集</title>
 
 <style>
 body {
   margin:0;
-  font-family:Arial;
-  background:#111;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#0d0d0d;
   color:#fff;
 }
 
-/* 导航 */
+/* 顶部导航 */
 header {
   display:flex;
   justify-content:space-between;
-  padding:20px 40px;
-  border-bottom:1px solid #333;
+  align-items:center;
+  padding:20px 60px;
+  border-bottom:1px solid #222;
+  position:sticky;
+  top:0;
+  background:#0d0d0d;
+}
+
+.logo {
+  font-size:18px;
+  font-weight:bold;
 }
 
 nav a {
   margin:0 15px;
-  color:#aaa;
+  color:#888;
   cursor:pointer;
   text-decoration:none;
+  position:relative;
 }
 
 nav a.active {
   color:#fff;
-  border-bottom:2px solid #fff;
+}
+
+nav a.active::after {
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:0;
+  width:100%;
+  height:2px;
+  background:#fff;
 }
 
 /* 区块 */
 .section {
   display:none;
+  padding:40px 60px;
 }
 
 .section.active {
@@ -44,40 +64,59 @@ nav a.active {
 /* 网格 */
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-  gap:20px;
-  padding:20px 40px;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:24px;
 }
 
 /* 卡片 */
 .card {
-  background:#1a1a1a;
-  border-radius:12px;
+  background:#161616;
+  border-radius:14px;
   overflow:hidden;
   transition:0.3s;
+  cursor:pointer;
 }
 
 .card:hover {
-  transform:translateY(-5px);
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.6);
 }
 
 .card img {
   width:100%;
+  height:180px;
+  object-fit:cover;
 }
 
 .card .content {
-  padding:10px;
+  padding:14px;
+}
+
+.card h4 {
+  margin:5px 0;
+}
+
+.card p {
+  color:#888;
+  font-size:13px;
 }
 
 /* 视频 */
 .video-box {
-  max-width:800px;
-  margin:40px auto;
+  max-width:900px;
+  margin:auto;
 }
+
 .video-box iframe {
   width:100%;
-  height:450px;
+  height:500px;
   border-radius:12px;
+}
+
+/* 标题 */
+.section-title {
+  font-size:22px;
+  margin-bottom:20px;
 }
 </style>
 </head>
@@ -85,75 +124,106 @@ nav a.active {
 <body>
 
 <header>
-  <div>我的作品集</div>
+  <div class="logo">我的作品集</div>
   <nav>
-    <a onclick="show('graphic')" class="active">平面设计</a>
-    <a onclick="show('ecommerce')">电商设计</a>
-    <a onclick="show('video')">视频</a>
-    <a onclick="show('wechat')">公众号文章</a>
-    <a onclick="show('news')">新闻稿</a>
+    <a class="active" onclick="show('graphic', this)">平面设计</a>
+    <a onclick="show('ecommerce', this)">电商设计</a>
+    <a onclick="show('video', this)">视频</a>
+    <a onclick="show('wechat', this)">公众号文章</a>
+    <a onclick="show('news', this)">新闻稿</a>
   </nav>
 </header>
 
 <!-- 平面设计 -->
-<div id="graphic" class="section active">
+<section id="graphic" class="section active">
+  <div class="section-title">平面设计</div>
   <div class="grid">
-    <div class="card">
-      <img src="https://picsum.photos/400/300?1">
-      <div class="content">海报设计</div>
-    </div>
-  </div>
-</div>
 
-<!-- 电商设计 -->
-<div id="ecommerce" class="section">
-  <div class="grid">
+    <a href="poster1.html">
+      <div class="card">
+        <img src="https://picsum.photos/400/300?1">
+        <div class="content">
+          <h4>海报设计</h4>
+          <p>品牌活动视觉 · 2025</p>
+        </div>
+      </div>
+    </a>
+
     <div class="card">
       <img src="https://picsum.photos/400/300?2">
-      <div class="content">电商详情页</div>
+      <div class="content">
+        <h4>KV主视觉</h4>
+        <p>品牌Campaign设计</p>
+      </div>
     </div>
+
   </div>
-</div>
+</section>
+
+<!-- 电商 -->
+<section id="ecommerce" class="section">
+  <div class="section-title">电商设计</div>
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://picsum.photos/400/300?3">
+      <div class="content">
+        <h4>详情页设计</h4>
+        <p>提升转化率设计</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- 视频 -->
-<div id="video" class="section">
-  <div class="video-box">
-    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-  </div>
-</div>
+<section id="video" class="section">
+  <div class="section-title">视频作品</div>
 
-<!-- 公众号文章 -->
-<div id="wechat" class="section">
+  <div class="video-box">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </div>
+
+</section>
+
+<!-- 公众号 -->
+<section id="wechat" class="section">
+  <div class="section-title">公众号文章</div>
   <div class="grid">
+
     <div class="card">
       <img src="https://picsum.photos/400/200">
       <div class="content">
-        公众号文章标题<br>
-        <a href="#" style="color:#4da3ff;">阅读</a>
+        <h4>品牌故事文章</h4>
+        <p>阅读量 10w+</p>
       </div>
     </div>
+
   </div>
-</div>
+</section>
 
 <!-- 新闻稿 -->
-<div id="news" class="section">
+<section id="news" class="section">
+  <div class="section-title">新闻稿</div>
   <div class="grid">
+
     <div class="card">
       <div class="content">
-        新闻稿标题<br>
-        <a href="#" style="color:#4da3ff;">查看</a>
+        <h4>品牌发布新闻稿</h4>
+        <p>媒体转载 20+</p>
       </div>
     </div>
+
   </div>
-</div>
+</section>
 
 <script>
-function show(id) {
+function show(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
 
   document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 </script>
 
