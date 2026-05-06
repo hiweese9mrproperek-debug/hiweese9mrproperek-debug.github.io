@@ -1,214 +1,196 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
 <title>林歌作品网</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    font-family:-apple-system,BlinkMacSystemFont;
-    background:#0d0d0d;
-    color:#fff;
+  margin:0;
+  font-family:Arial;
+  background:#0d0d0d;
+  color:#fff;
 }
 
-/* 顶部 */
+/* 顶部导航 */
 header{
-    display:flex;
-    justify-content:space-between;
-    padding:20px 60px;
-    border-bottom:1px solid #222;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 60px;
+  border-bottom:1px solid #222;
 }
-.logo{font-weight:bold;}
+
 nav a{
-    margin-left:20px;
-    color:#aaa;
-    text-decoration:none;
-}
-nav a:hover{color:#fff;}
-
-/* 首屏 */
-.hero{
-    padding:100px 60px;
-}
-.hero h1{font-size:42px;}
-.hero p{color:#888;margin:20px 0;}
-.btn{
-    display:inline-block;
-    padding:12px 24px;
-    background:#fff;
-    color:#000;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
+  margin-left:20px;
+  color:#aaa;
+  text-decoration:none;
+  cursor:pointer;
 }
 
-/* 通用 */
-.section{padding:80px 60px;}
-h2{margin-bottom:20px;}
-
-/* 服务 */
-.services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-.service{
-    background:#161616;
-    padding:20px;
-    border-radius:10px;
+nav a:hover{
+  color:#fff;
 }
 
-/* 作品 */
-.filter span{
-    margin-right:15px;
-    cursor:pointer;
-    color:#888;
+/* Banner */
+.banner{
+  padding:80px 60px 40px;
 }
-.filter span.active{color:#fff;}
 
+.banner h1{
+  font-size:42px;
+  margin:0;
+}
+
+.banner p{
+  color:#888;
+}
+
+/* 瀑布流 */
 .grid{
-    column-count:4;
-    column-gap:20px;
+  column-count:3;
+  column-gap:20px;
+  padding:20px 60px 60px;
 }
+
 .card{
-    break-inside:avoid;
-    margin-bottom:20px;
-    position:relative;
-    cursor:pointer;
+  display:block;
+  break-inside:avoid;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+  text-decoration:none;
+  color:#fff;
 }
+
+/* 图片 */
 .card img{
-    width:100%;
-    border-radius:10px;
-}
-.card .info{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    padding:15px;
-    background:linear-gradient(transparent,rgba(0,0,0,0.8));
-    opacity:0;
-}
-.card:hover .info{opacity:1;}
-
-/* 弹窗 */
-.modal{
-    display:none;
-    position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,0.8);
-    justify-content:center;
-    align-items:center;
-}
-.modal-content{
-    background:#111;
-    padding:30px;
-    width:80%;
-    max-width:700px;
-}
-.close{
-    float:right;
-    cursor:pointer;
+  width:100%;
+  display:block;
+  border-radius:10px;
+  transition:0.4s;
 }
 
-/* 联系 */
-.contact{text-align:center;}
-.contact p{color:#aaa;margin:10px 0;}
+/* hover效果 */
+.card:hover img{
+  transform:scale(1.05);
+  opacity:0.7;
+}
+
+/* 遮罩 */
+.overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:20px;
+  opacity:0;
+  transition:0.3s;
+}
+
+.card:hover .overlay{
+  opacity:1;
+}
+
+.overlay h3{
+  margin:0;
+}
+
+.overlay p{
+  margin:5px 0 0;
+  font-size:12px;
+  color:#ccc;
+}
+
+/* 响应式 */
+@media(max-width:1000px){
+  .grid{column-count:2;}
+}
+
+@media(max-width:600px){
+  .grid{column-count:1;}
+}
 </style>
+
 </head>
 
 <body>
 
 <header>
-    <div class="logo">林歌作品网</div>
-    <nav>
-        <a href="#">首页</a>
-        <a href="#work">作品</a>
-        <a href="#contact">联系</a>
-    </nav>
+  <div>我的作品集</div>
+  <nav>
+    <a onclick="filter('all')">全部</a>
+    <a onclick="filter('平面')">平面设计</a>
+    <a onclick="filter('电商')">电商设计</a>
+    <a onclick="filter('视频')">视频</a>
+    <a onclick="filter('文章')">文章</a>
+  </nav>
 </header>
 
-<!-- 首屏 -->
-<section class="hero">
-    <h1>品牌视觉 · 电商设计 · 内容创意</h1>
-    <p>帮助品牌提升视觉价值与转化率</p>
-    <a href="#contact" class="btn">获取报价</a>
-</section>
+<div class="banner">
+  <h1>精选作品</h1>
+  <p>Branding · E-commerce · Content Design</p>
+</div>
 
-<!-- 信任 -->
-<section class="section">
-    <h2>服务经验</h2>
-    <p style="color:#888;">已完成 30+ 项目 · 覆盖电商 / 品牌 / 内容</p>
-</section>
+<div class="grid">
 
-<!-- 服务 -->
-<section class="section">
-    <h2>服务内容</h2>
-    <div class="services">
-        <div class="service">平面设计 / 海报 / KV</div>
-        <div class="service">电商设计 / 详情页</div>
-        <div class="service">短视频剪辑</div>
-        <div class="service">公众号 / 文案</div>
+  <!-- 平面设计 -->
+  <a href="#" class="card" data-type="平面">
+    <img src="https://picsum.photos/400/500?1">
+    <div class="overlay">
+      <h3>品牌海报设计</h3>
+      <p>平面设计 · 2025</p>
     </div>
-</section>
+  </a>
 
-<!-- 作品 -->
-<section class="section" id="work">
-    <h2>精选案例</h2>
-
-    <div class="filter">
-        <span class="active">全部</span>
-        <span>电商</span>
-        <span>品牌</span>
-        <span>视频</span>
+  <a href="#" class="card" data-type="平面">
+    <img src="https://picsum.photos/400/300?2">
+    <div class="overlay">
+      <h3>LOGO设计</h3>
+      <p>品牌视觉</p>
     </div>
+  </a>
 
-    <div class="grid">
-        <div class="card" onclick="openModal('电商详情页设计','转化率提升30%')">
-            <img src="https://picsum.photos/500/700?1">
-            <div class="info">电商详情页</div>
-        </div>
-
-        <div class="card" onclick="openModal('品牌海报设计','曝光提升50%')">
-            <img src="https://picsum.photos/500/600?2">
-            <div class="info">品牌海报</div>
-        </div>
-
-        <div class="card" onclick="openModal('短视频项目','播放量10万+')">
-            <img src="https://picsum.photos/500/800?3">
-            <div class="info">短视频</div>
-        </div>
+  <!-- 电商设计 -->
+  <a href="#" class="card" data-type="电商">
+    <img src="https://picsum.photos/400/600?3">
+    <div class="overlay">
+      <h3>电商详情页</h3>
+      <p>转化率提升</p>
     </div>
-</section>
+  </a>
 
-<!-- 联系 -->
-<section class="section contact" id="contact">
-    <h2>合作咨询</h2>
-    <p>欢迎品牌合作 / 外包项目</p>
-    <p>微信：your_wechat</p>
-    <p>邮箱：your@email.com</p>
-</section>
-
-<!-- 弹窗 -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">×</span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalDesc"></p>
+  <!-- 视频 -->
+  <a href="#" class="card" data-type="视频">
+    <img src="https://picsum.photos/400/350?4">
+    <div class="overlay">
+      <h3>短视频剪辑</h3>
+      <p>内容策划</p>
     </div>
+  </a>
+
+  <!-- 文章 -->
+  <a href="#" class="card" data-type="文章">
+    <img src="https://picsum.photos/400/450?5">
+    <div class="overlay">
+      <h3>公众号文章</h3>
+      <p>阅读10W+</p>
+    </div>
+  </a>
+
 </div>
 
 <script>
-function openModal(title,desc){
-    document.getElementById('modal').style.display='flex';
-    document.getElementById('modalTitle').innerText=title;
-    document.getElementById('modalDesc').innerText=desc;
-}
-function closeModal(){
-    document.getElementById('modal').style.display='none';
+function filter(type){
+  let cards = document.querySelectorAll('.card');
+
+  cards.forEach(card=>{
+    if(type === 'all' || card.dataset.type === type){
+      card.style.display = 'block';
+    }else{
+      card.style.display = 'none';
+    }
+  });
 }
 </script>
 
